@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('documentation').addEventListener('click', function() {
-        window.location.href = 'documentation.html';
+        window.location.href = 'documentation';
     });
 
     document.getElementById('support').addEventListener('click', function() {

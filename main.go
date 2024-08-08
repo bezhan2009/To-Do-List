@@ -2,8 +2,10 @@ package main
 
 import (
 	"encoding/json"
+	"html/template"
 	"log"
 	"net/http"
+	"path/filepath"
 )
 
 type Task struct {
@@ -49,7 +51,7 @@ func tasksHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func AddTask(w http.ResponseWriter, r *http.Request) {
+func addTask(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
 	if r.Method == http.MethodOptions {
 		w.WriteHeader(http.StatusOK)
@@ -78,10 +80,36 @@ func AddTask(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func main() {
-	http.HandleFunc("/tasks", tasksHandler)
-	http.HandleFunc("/tasks/create", AddTask)
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	tmplPath := filepath.Join("template", "index.html")
+	tmpl, err := template.ParseFiles(tmplPath)
+	if err != nil {
+		http.Error(w, "Error parsing template", http.StatusInternalServerError)
+		return
+	}
+	tmpl.Execute(w, nil)
+}
 
-	log.Println("Server started on :8080")
+func documentationHandler(w http.ResponseWriter, r *http.Request) {
+	tmplPath := filepath.Join("template", "documentation.html")
+	tmpl, err := template.ParseFiles(tmplPath)
+	if err != nil {
+		http.Error(w, "Error parsing template", http.StatusInternalServerError)
+		return
+	}
+	tmpl.Execute(w, nil)
+}
+
+func main() {
+	// Обработка статических файлов
+	fs := http.FileServer(http.Dir("static"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
+
+	http.HandleFunc("/tasks", tasksHandler)
+	http.HandleFunc("/tasks/create", addTask)
+	http.HandleFunc("/", indexHandler)
+	http.HandleFunc("/documentation", documentationHandler)
+
+	log.Println("Server started on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
