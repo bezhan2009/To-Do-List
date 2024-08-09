@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документация - To-Do List</title>
+    <link rel="stylesheet" href="css/main_css_file_for_index.css">
+    <style>
+        /* Добавим дополнительные стили для документации */
+        .docs-header {
+            background: rgba(244, 246, 247, 0.7);
+            border-bottom: 1px solid #eceef2;
+            backdrop-filter: blur(20px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 21;
+        }
+
+        .docs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .docs-content {
+            margin: 100px auto;
+            padding: 20px;
+            width: 80%;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+        }
+
+        .docs-content h1, .docs-content h2 {
+            color: #2528b1;
+        }
+
+        .docs-content h1 {
+            margin-bottom: 20px;
+        }
+
+        .docs-content h2 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .docs-content p {
+            line-height: 1.6;
+        }
+
+        .docs-content code {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #444444;
+        }
+
+        .docs-content ul {
+            list-style: disc;
+            margin-left: 20px;
+            color: #444444;
+        }
+
+        .docs-content li {
+            margin-bottom: 10px;
+            color: #444444;
+        }
+
+        body {
+            background-image: url('https://hdfon.ru/wp-content/uploads/hdfon.ru-910967601.jpg');
+            background-size: cover; /* Подгоняет изображение, чтобы оно покрывало весь фон */
+            background-position: center; /* Центрирует изображение */
+            background-repeat: no-repeat; /* Запрещает повторение изображения */
+        }
+
+        h1, h2, h3, pre, p {
+            color: #444444;
+        }
+
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="header-container">
+        <div class="header-nav">
+            <div class="header-logo">
+                <a href="index.html"><img src="images/main.svg" alt="Логотип"></a>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+            <nav class="header-nav-menu">
+                <a href="index.html">Мои задачи</a>
+                <a href="https://github.com/bezhan2009">Об авторе</a>
+            </nav>
+            <div class="header-nav-actions" id="user-actions">
+                <button class="btn btn-transparent" id="support">Поддержка</button>
+                <button class="btn btn-primary" id="documentation">Документация</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="docs-content">
+        <h1>Документация проекта To-Do List</h1>
+        <p>Добро пожаловать в документацию для To-Do List проекта. Этот проект позволяет пользователям управлять своими задачами. Ниже вы найдете информацию о функционале, установке и использовании.</p>
+
+        <h2>Функционал</h2>
+        <ul>
+            <li><strong>Просмотр задач:</strong> Возможность просматривать все созданные задачи.</li>
+            <li><strong>Создание задач:</strong> Возможность добавлять новые задачи в список.</li>
+        </ul>
+
+        <h2>Установка</h2>
+        <p>Для установки и запуска проекта выполните следующие шаги:</p>
+        <ol>
+            <li>Склонируйте репозиторий: <code>git clone <url></code></li>
+            <li>Перейдите в директорию проекта: <code>cd <directory></code></li>
+            <li>Установите зависимости: <code>go mod download</code></li>
+            <li>Запустите сервер: <code>go run main.go</code></li>
+        </ol>
+
+        <h2>Использование</h2>
+        <p>После запуска сервера вы можете открыть приложение в браузере по адресу <code>http://localhost:8080</code>. Интерфейс приложения позволяет вам создавать и просматривать задачи.</p>
+
+        <h2>Технологии</h2>
+        <p>Проект состоит из следующих компонентов:</p>
+        <ul>
+            <li><strong>Backend:</strong> Реализован на Go, обрабатывает запросы и управляет данными задач.</li>
+            <li><strong>Frontend:</strong> HTML, CSS и JavaScript для отображения интерфейса и взаимодействия с пользователем.</li>
+        </ul>
+    </div>
+</main>
+
+<script src="js/main.js"></script>
+</body>
+</html>
