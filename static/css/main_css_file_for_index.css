@@ -275,10 +275,38 @@ html, body {
   transform: translateY(-3px);
 }
 
+.task .update-btn {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: -10px;
+  right: 50px;
+  background: #7b7bd2;
+  border: none;
+  color: white;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.task .update-btn:hover {
+  background: #2528b1;
+  transform: translateY(-3px);
+}
+
+.task:hover .update-btn {
+  top: 10px;
+  opacity: 1;
+}
+
 .task:hover .delete-btn {
   top: 10px;
   opacity: 1;
 }
+
+
 .task input[type="text"], .task textarea {
   width: 100%;
   padding: 10px;
@@ -337,4 +365,97 @@ html, body {
   top: 0%;
   left: 0%;
   transform: scale(0, 0);
+}
+
+/* Скрываем стандартный select */
+.custom-select-wrapper {
+  position: relative;
+  user-select: none;
+}
+
+.custom-select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 1rem;
+  color: #333;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease;
+}
+
+.custom-select:hover {
+  border-color: #2528b1;
+}
+
+.select-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.arrow {
+  margin-left: 10px;
+  border: solid #333;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 5px;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+}
+
+.custom-select.open .arrow {
+  transform: rotate(-135deg);
+}
+
+.custom-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  overflow: hidden;
+  z-index: 99;
+}
+
+.custom-select.open .custom-options {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.custom-option {
+  overflow: hidden;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.custom-option:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.custom-option.selected {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.custom-option.selected::before {
+  content: '✔';
+  margin-right: 10px;
+  color: #2528b1;
+}
+
+.custom-select.open .custom-option {
+  display: block;
 }

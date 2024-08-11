@@ -52,10 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         const taskElement = document.createElement("div");
                         taskElement.classList.add("task");
                         taskElement.innerHTML = `
-                        <button class="delete-btn">&times;</button>
+                        <button class="delete-btn" title="Удалить задачу">&times;</button>
+                        <button class="update-btn" title="Обновить задачу">&#9998;</button>
                         <h2>${task.title}</h2>
                         <h3>
-                            <pre>${task.content}</pre>
+                            <pre>${task.description}</pre>
+                            <br>
+                            <h2>Статус</h2>
+                            <pre><h3 style="margin: 0;padding: 0">${task.status}</h3></pre>
                         </h3>
                     `;
 
@@ -95,14 +99,16 @@ document.addEventListener('DOMContentLoaded', () => {
         shutTasks()
         const title = document.getElementById("title").value;
         const content = document.getElementById("content").value;
+        const priority = document.getElementById("priority").innerHTML
 
         if (title && content) {
             const task = {
                 title: title,
-                content: content
+                description: content,
+                priority: priority
             };
 
-            fetch("http://localhost:8080/tasks/create", {
+            fetch("http://localhost:8080/tasks", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -172,3 +178,24 @@ function showTasks() {
     // Очистка сохранённого HTML
     savedBlockHtml = '';
 }
+
+document.querySelector('.custom-select-wrapper').addEventListener('click', function() {
+    this.querySelector('.custom-select').classList.toggle('open');
+});
+
+for (const option of document.querySelectorAll(".custom-option")) {
+    option.addEventListener('click', function() {
+        if (!this.classList.contains('selected')) {
+            this.parentNode.querySelector('.custom-option.selected').classList.remove('selected');
+            this.classList.add('selected');
+            this.closest('.custom-select').querySelector('.select-trigger span').textContent = this.textContent;
+        }
+    });
+}
+
+window.addEventListener('click', function(e) {
+    const select = document.querySelector('.custom-select');
+    if (!select.contains(e.target)) {
+        select.classList.remove('open');
+    }
+});

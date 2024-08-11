@@ -44,13 +44,30 @@
 <div class="create-task">
     <div class="task">
         <input type="text" id="title" placeholder="Заголовок задачи">
-        <textarea id="content" placeholder="Описания задачи"></textarea>
+        <textarea id="content" placeholder="Описание задачи"></textarea>
+
+        <div class="custom-select-wrapper">
+            <div class="custom-select">
+                <div class="select-trigger">
+                    <span id="priority">Выберите приоритет</span>
+                    <div class="arrow"></div>
+                </div>
+                <div class="custom-options">
+                    <span class="custom-option selected" data-value="low">Низкий</span>
+                    <span class="custom-option" data-value="medium">Средний</span>
+                    <span class="custom-option" data-value="high">Высокий</span>
+                </div>
+            </div>
+        </div>
+    <br>
         <div class="header-nav-actions">
             <button class="btn btn-primary" id="save_task">Сохранить</button>
             <button class="btn btn-transparent" id="cancel_task" onclick="shutTasks()">Отмена</button>
         </div>
     </div>
 </div>
+
+
 
 <script src="/static/js/main.js"></script>
 </body>
